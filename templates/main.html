@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>weather</title>
+    <title>{{ title }}</title>
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <header>
@@ -48,7 +46,6 @@
                     <li><a href="{{ url_for('week') }}">Events</a></li>
                     <li><a href="{{ url_for('contact') }}">Contact</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-  
                 </ul>
             </div>
             <div class="footer-social-media">
