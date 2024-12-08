@@ -1,4 +1,4 @@
-/* Main CSS for Weather App */
+/* Main CSS for Weather UI */
 
 /* General Styles */
 body {
@@ -44,7 +44,17 @@ nav ul li a:hover {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/weather-bg.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
-    padding: 120px 20px;
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.hero img.logo {
+    max-width: 80%; /* Responsive logo size */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Space below the logo */
 }
 
 .hero h1 {
@@ -138,14 +148,6 @@ nav ul li a:hover {
     .hero-btn {
         padding: 10px 20px;
         font-size: 1em;
-    }
-
-    nav ul li {
-        margin: 0 0.5em; /* Adjust spacing for smaller screens */
-    }
-
-    nav ul li a {
-        font-size: 1em; /* Smaller font size for nav links */
     }
 }
 
