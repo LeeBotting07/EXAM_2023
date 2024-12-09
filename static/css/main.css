@@ -1,19 +1,24 @@
 /* Main CSS for Weather UI */
 
+/* Hide Main Content */
+.hide-main {
+    display: none; /* Hides the main content */
+}
+
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e0f7fa; /* Light cyan background */
+    background-color: #e0e6ed; /* Muted light gray background */
 }
 
-/* Navigation styles */
+/* Navigation Styles */
 nav {
     display: flex;
     justify-content: center;
     padding: 1em 0;
-    background-color: #005f73; /* Teal background */
+    background-color: #2c3e50; /* Darker navy blue background */
 }
 
 nav ul {
@@ -28,7 +33,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ffffff; /* White text */
+    color: #ecf0f1; /* Light gray text */
     text-decoration: none;
     font-weight: bold;
     font-size: 1.2em;
@@ -36,7 +41,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #ffcc00; /* Yellow color on hover */
+    color: #bdc3c7; /* Lighter gray color on hover */
 }
 
 /* Hero Section */
@@ -70,8 +75,8 @@ nav ul li a:hover {
 }
 
 .hero-btn {
-    background-color: #ffcc00; /* Yellow button */
-    color: #005f73; /* Teal text */
+    background-color: #3498db; /* Subtle blue button */
+    color: #2c3e50; /* Darker navy blue text */
     padding: 15px 30px;
     text-decoration: none;
     border-radius: 5px;
@@ -81,7 +86,7 @@ nav ul li a:hover {
 }
 
 .hero-btn:hover {
-    background-color: #ffd60a; /* Darker yellow on hover */
+    background-color: #2980b9; /* Darker blue on hover */
     transform: scale(1.05);
 }
 
@@ -94,7 +99,7 @@ nav ul li a:hover {
 .weather-overview h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #005f73; /* Teal color */
+    color: #2c3e50; /* Darker navy blue color */
 }
 
 .weather-cards {
@@ -121,7 +126,7 @@ nav ul li a:hover {
 }
 
 .weather-card h3 {
-    color: #005f73; /* Teal for card titles */
+    color: #2c3e50; /* Darker navy blue for card titles */
     margin-bottom: 10px;
 }
 
@@ -157,6 +162,7 @@ footer {
     color: white;
     padding: 40px 20px;
     text-align: center;
+    font-size: 0.9em; /* Slightly smaller font size for a cleaner look */
 }
 
 .footer-content {
@@ -172,8 +178,8 @@ footer {
 }
 
 .footer-logo-img {
-    width: 350px;
-    height: auto;
+    width: 120px; /* Adjusted width for a smaller logo */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .footer-links, .footer-social-media {
@@ -203,7 +209,7 @@ footer {
 }
 
 .footer-links a:hover {
-    color: #1abc9c;
+    color: #bdc3c7; /* Change color on hover for better visibility */
 }
 
 .footer-social-media {
@@ -221,12 +227,12 @@ footer {
 }
 
 .social-icons img {
-    width: 24px;
+    width: 24px; /* Size of social media icons */
     height: auto;
     vertical-align: middle;
 }
 
 .footer-bottom {
     margin-top: 20px;
-    font-size: 0.9em;
+    font-size: 0.8em; /* Smaller font size for the copyright notice */
 }
