@@ -3,15 +3,12 @@ import sqlite3
 
 app = Flask(__name__)
 
-session['role'] == 'admin'
-
-
 
 # Routes
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('index.html', title="Home", role=session['role'])
+    return render_template('index.html', title="Home")
 
 @app.route('/weather')
 def weather():

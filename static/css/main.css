@@ -1,5 +1,10 @@
 /* Main CSS for Weather UI */
 
+/* Ensure body and html take full height */
+html, body {
+    height: 100%;
+}
+
 /* Hide Main Content */
 .hide-main {
     display: none; /* Hides the main content */
@@ -19,6 +24,9 @@ nav {
     justify-content: center;
     padding: 1em 0;
     background-color: #2c3e50; /* Darker navy blue background */
+    position: fixed; /* Fix the nav bar at the top */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays on top */
 }
 
 nav ul {
@@ -235,4 +243,27 @@ footer {
 .footer-bottom {
     margin-top: 20px;
     font-size: 0.8em; /* Smaller font size for the copyright notice */
+}
+
+/* Todays weather */
+.hourly-scroll {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    padding: 10px 0;
+    gap: 10px; /* Space between cards */
+}
+
+.hourly-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    min-width: 100px; /* Minimum width for each card */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hourly-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
