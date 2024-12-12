@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Login</h1>
+    <p>Please select your role:</p>
+    <div class="box">
+        <h2>Customer Login</h2>
+        <a href="/customer-login" class="button">Login as Customer</a>
+    </div>
+    <div class="box">
+        <h2>Admin Login</h2>
+        <a href="/admin-login" class="button">Login as Admin</a>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+{% endblock %}

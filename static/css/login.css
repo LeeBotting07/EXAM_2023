@@ -1,0 +1,67 @@
+/* Login Page Styles */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #e0e6ed; /* Muted light gray background */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50; /* Darker navy blue color */
+}
+
+p {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.2em;
+    color: #555; /* Dark gray text */
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 0 20px; /* Space between buttons */
+    font-size: 1.2em;
+    color: white;
+    background-color: #3498db; /* Subtle blue button */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+.box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    width: 300px; /* Fixed width for boxes */
+    margin: 0 20px; /* Space between boxes */
+}
+
+.box h2 {
+    margin-bottom: 20px;
+    color: #2c3e50; /* Darker navy blue color */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack boxes vertically on smaller screens */
+    }
+
+    .box {
+        margin: 20px 0; /* Space between boxes */
+        width: 80%; /* Responsive width */
+    }
+}
