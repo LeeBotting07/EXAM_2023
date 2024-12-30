@@ -39,6 +39,20 @@ p {
     margin: 20px 0; /* Space between role boxes */
 }
 
+input[type="email"], input[type="password"] {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding for comfort */
+    margin: 10px 0; /* Space between fields */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #3498db; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
 .button {
     display: inline-block;
     padding: 15px 30px;
