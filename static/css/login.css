@@ -1,30 +1,48 @@
 /* Login Page Styles */
-.container {
+body {
+    background-color: #f4f4f4; /* Light background for contrast */
+}
+
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
-    background-color: #e0e6ed; /* Muted light gray background */
+}
+
+.login-box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 400px; /* Fixed width for the login box */
+}
+
+.login-logo {
+    max-width: 80%; /* Responsive logo size */
+    margin-bottom: 20px; /* Space below the logo */
 }
 
 h1 {
-    text-align: center;
     margin-bottom: 20px;
     color: #2c3e50; /* Darker navy blue color */
 }
 
 p {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1.2em;
+    margin-bottom: 30px;
+    font-size: 1.1em;
     color: #555; /* Dark gray text */
+}
+
+.role-box {
+    margin: 20px 0; /* Space between role boxes */
 }
 
 .button {
     display: inline-block;
     padding: 15px 30px;
-    margin: 0 20px; /* Space between buttons */
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: white;
     background-color: #3498db; /* Subtle blue button */
     border: none;
@@ -40,28 +58,8 @@ p {
     transform: scale(1.05);
 }
 
-.box {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 40px;
-    text-align: center;
-    width: 300px; /* Fixed width for boxes */
-    margin: 0 20px; /* Space between boxes */
-}
-
-.box h2 {
-    margin-bottom: 20px;
-    color: #2c3e50; /* Darker navy blue color */
-}
-
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Stack boxes vertically on smaller screens */
-    }
-
-    .box {
-        margin: 20px 0; /* Space between boxes */
-        width: 80%; /* Responsive width */
+    .login-box {
+        width: 90%; /* Responsive width for smaller screens */
     }
 }
