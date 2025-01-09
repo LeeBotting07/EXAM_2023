@@ -71,9 +71,14 @@ def admin_login():
 
         # Check if the email contains '@admin'
         if '@admin' not in email:
-            flash("Only admin accounts can log in here.", 'error')  # Flash error message
-            return redirect(url_for('customer_login'))  # Redirect to customer login
-        
+            flash("Only admin accounts can log in here.", 'error')
+            return redirect(url_for('customer_login'))
+
+        # Check the password (replace "admin123" with your actual password logic)
+        if password != "admin123":
+            flash("Incorrect password. Please try again.", 'error')
+            return redirect(url_for('admin_login'))
+
         try:
             with sqlite3.connect("dojo.db") as con:
                 cur = con.cursor()
@@ -82,14 +87,13 @@ def admin_login():
 
                 if data:
                     hashed_password, role = data
-                    # Check the password and role
                     if bcrypt.check_password_hash(hashed_password, password) and role == 'admin':
-                        session['email'] = email  # Set the session variable
-                        session['role'] = role  # Set the role for the session
+                        session['email'] = email
+                        session['role'] = role
                         # Update last login timestamp
                         cur.execute("UPDATE users SET last_login = ? WHERE email = ?", (datetime.datetime.now(), email))
                         con.commit()
-                        return redirect(url_for('admin_panel'))  # Redirect to admin panel
+                        return redirect(url_for('admin_panel'))
                     else:
                         error = "Invalid email or password"
                 else:
@@ -98,6 +102,38 @@ def admin_login():
             error = f"Database error: {e}"
 
     return render_template('admin-login.html', title="Admin Login", error=error)
+
+@app.route('/admin-register', methods=['GET', 'POST'])
+def admin_register():
+    error = None
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        if password != confirm_password:
+            error = "Passwords do not match."
+        else:
+            try:
+                with sqlite3.connect("dojo.db") as con:
+                    cur = con.cursor()
+                    # Check if the email already exists
+                    cur.execute("SELECT email FROM users WHERE email = ?", (email,))
+                    if cur.fetchone():
+                        error = "Email already registered."
+                    else:
+                        # Hash the password
+                        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                        # Insert the new admin user
+                        cur.execute("INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
+                                    (email, hashed_password, 'admin'))
+                        con.commit()
+                        flash("Admin account created successfully. Please log in.", 'success')
+                        return redirect(url_for('admin_login'))
+            except sqlite3.Error as e:
+                error = f"Database error: {e}"
+
+    return render_template('admin-register.html', title='Admin Registration', error=error)
 
 if __name__ == '__main__':
     app.run(debug=True)

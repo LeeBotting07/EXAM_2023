@@ -1,3 +1,22 @@
+/* Flash message styles */
+.flash-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.flash-message.error {
+    background-color: #ffebee; /* Light red background for errors */
+    color: #c62828; /* Dark red text */
+}
+
+.flash-message.success {
+    background-color: #e8f5e9; /* Light green background for success */
+    color: #2e7d32; /* Dark green text */
+}
+
 /* Login Page Styles */
 body {
     background-color: #f4f4f4; /* Light background for contrast */
