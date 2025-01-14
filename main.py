@@ -4,7 +4,7 @@ import bcrypt
 import datetime
 
 app = Flask(__name__)
-
+app.secret_key = 'your_unique_secret_key_here'  # Set a unique secret key
 
 # Routes
 @app.route('/')
@@ -93,7 +93,7 @@ def admin_login():
                         # Update last login timestamp
                         cur.execute("UPDATE users SET last_login = ? WHERE email = ?", (datetime.datetime.now(), email))
                         con.commit()
-                        return redirect(url_for('admin_panel'))
+                        return redirect(url_for('admin_panel'))  # Redirect to admin panel
                     else:
                         error = "Invalid email or password"
                 else:
@@ -102,6 +102,10 @@ def admin_login():
             error = f"Database error: {e}"
 
     return render_template('admin-login.html', title="Admin Login", error=error)
+
+@app.route('/admin-panel')
+def admin_panel():
+    return render_template('admin-panel.html', title="Admin Panel")  # Render the admin panel template
 
 @app.route('/admin-register', methods=['GET', 'POST'])
 def admin_register():
@@ -137,4 +141,3 @@ def admin_register():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
