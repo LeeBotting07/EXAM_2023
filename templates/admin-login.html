@@ -3,7 +3,7 @@
 {% block content %}
 
 <!-- Display flash messages -->
-{% with messages = get_flashed_messages(with_categories=true) %}
+{% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
         {% for category, message in messages %}
             <div class="flash-message {{ category }}">
@@ -17,6 +17,11 @@
     <div class="login-box">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="login-logo">
         <h1>Admin Login</h1>
+        {% if 'success' in session %}
+            <div class="flash-message success">
+                {{ session.pop('success') }}
+            </div>
+        {% endif %}
         <form action="{{ url_for('admin_login') }}" method="POST">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
