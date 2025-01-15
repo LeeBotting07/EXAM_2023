@@ -44,7 +44,7 @@ def customer_login():
             return redirect(url_for('admin_login'))
         
         try:
-            with sqlite3.connect("dojo.db") as con:
+            with sqlite3.connect("weather.db") as con:
                 cur = con.cursor()
                 cur.execute("SELECT password, role FROM users WHERE email = ?", (email,))
                 data = cur.fetchone()
@@ -76,7 +76,7 @@ def admin_login():
             return redirect(url_for('admin_login'))
 
         try:
-            with sqlite3.connect("dojo.db") as con:
+            with sqlite3.connect("weather.db") as con:
                 cur = con.cursor()
                 cur.execute("SELECT password, role FROM users WHERE email = ?", (email,))
                 data = cur.fetchone()
@@ -114,7 +114,7 @@ def admin_register():
             error = "Passwords do not match."
         else:
             try:
-                with sqlite3.connect("dojo.db") as con:
+                with sqlite3.connect("weather.db") as con:
                     cur = con.cursor()
                     cur.execute("SELECT email FROM users WHERE email = ?", (email,))
                     if cur.fetchone():
@@ -148,7 +148,7 @@ def customer_register():
             error = "Passwords do not match."
         else:
             try:
-                with sqlite3.connect("dojo.db") as con:
+                with sqlite3.connect("weather.db") as con:
                     cur = con.cursor()
                     cur.execute("SELECT email FROM users WHERE email = ?", (email,))
                     if cur.fetchone():
