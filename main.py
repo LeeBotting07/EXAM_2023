@@ -88,7 +88,7 @@ def admin_login():
                         session['role'] = role
                         cur.execute("UPDATE users SET last_login = ? WHERE email = ?", (datetime.datetime.now(), email))
                         con.commit()
-                        return redirect(url_for('admin_panel'))
+                        return redirect(url_for('admin-panel'))
                     else:
                         error = "Invalid email or password"
                 else:
