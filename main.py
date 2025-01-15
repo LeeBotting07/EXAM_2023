@@ -139,5 +139,43 @@ def admin_register():
 
     return render_template('admin-register.html', title='Admin Registration', error=error)
 
+# New customer registration route
+@app.route('/customer-register', methods=['GET', 'POST'])
+def customer_register():
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        first_name = request.form['firstName']
+        last_name = request.form['lastName']
+        phone_number = request.form['phoneNumber']
+        address = request.form['address']
+        email = request.form['email']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        if password != confirm_password:
+            error = "Passwords do not match."
+        else:
+            try:
+                with sqlite3.connect("dojo.db") as con:
+                    cur = con.cursor()
+                    # Check if the email already exists
+                    cur.execute("SELECT email FROM users WHERE email = ?", (email,))
+                    if cur.fetchone():
+                        error = "Email already registered."
+                    else:
+                        # Hash the password
+                        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+                        # Insert the new customer user
+                        cur.execute("INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
+                                    (email, hashed_password, 'customer'))
+                        con.commit()
+                        flash("Customer account created successfully. Please log in.", 'success')
+                        return redirect(url_for('customer_login'))
+            except sqlite3.Error as e:
+                error = f"Database error: {e}"
+
+    return render_template('customer-register.html', title='Customer Registration', error=error)
+
 if __name__ == '__main__':
     app.run(debug=True)

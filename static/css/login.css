@@ -64,7 +64,7 @@ p {
     margin: 20px 0; /* Space between role boxes */
 }
 
-input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"] {
     width: 100%; /* Full width */
     padding: 10px; /* Padding for comfort */
     margin: 10px 0; /* Space between fields */
@@ -73,7 +73,7 @@ input[type="email"], input[type="password"] {
     font-size: 1em; /* Font size */
 }
 
-input[type="email"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
     border-color: #3498db; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }

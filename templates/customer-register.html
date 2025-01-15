@@ -1,12 +1,12 @@
 {% extends "main.html" %}
-{% block title %}Admin Registration{% endblock %}
+{% block title %}Customer Registration{% endblock %}
 {% block content %}
 
 <div class="login-container">
     <div class="login-box">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="login-logo">
-        <h1>Admin Registration</h1>
-        <form action="{{ url_for('admin_register') }}" method="POST">
+        <h1>Customer Registration</h1>
+        <form action="{{ url_for('customer_register') }}" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="text" name="firstName" placeholder="First Name" required>
             <input type="text" name="lastName" placeholder="Last Name" required>
@@ -17,9 +17,7 @@
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
             <button type="submit" class="button">Register</button>
-            {% if error %}
-                <p class="error">{{ error }}</p>
-            {% endif %}
+            <p class="error">{{ error }}</p>
         </form>
     </div>
 </div>

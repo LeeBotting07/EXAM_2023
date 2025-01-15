@@ -13,6 +13,5 @@ CREATE TABLE users (
     firstName TEXT NOT NULL,
     lastName TEXT NOT NULL,
     phoneNumber TEXT,
-    address TEXT,
-    created_at TIMESTAMP
+    address TEXT
 );
