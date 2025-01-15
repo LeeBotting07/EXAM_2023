@@ -4,7 +4,7 @@ import bcrypt
 import datetime
 
 app = Flask(__name__)
-app.secret_key = 'your_unique_secret_key_here'  # Set a unique secret key
+app.secret_key = 'your_unique_secret_key_here'
 
 # Routes
 @app.route('/')
@@ -39,10 +39,9 @@ def customer_login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # Check if the email contains '@admin'
         if '@admin' in email:
-            flash("Admin accounts cannot log in here.", 'error')  # Flash error message
-            return redirect(url_for('admin_login'))  # Redirect to admin login
+            flash("Admin accounts cannot log in here.", 'error')
+            return redirect(url_for('admin_login'))
         
         try:
             with sqlite3.connect("dojo.db") as con:
@@ -50,12 +49,11 @@ def customer_login():
                 cur.execute("SELECT password, role FROM users WHERE email = ?", (email,))
                 data = cur.fetchone()
                 if data and bcrypt.check_password_hash(data[0], password):
-                    session['email'] = email  # Set the session variable
-                    session['role'] = data[1]  # Set the role for the session
-                    # Update last login timestamp
+                    session['email'] = email
+                    session['role'] = data[1]
                     cur.execute("UPDATE users SET last_login = ? WHERE email = ?", (datetime.datetime.now(), email))
                     con.commit()
-                    return redirect(url_for('account'))  # Redirect to account page
+                    return redirect(url_for('account'))
                 else:
                     error = "Invalid username or password"
         except sqlite3.Error as e:
@@ -69,12 +67,10 @@ def admin_login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # Check if the email contains '@admin'
         if '@admin' not in email:
             flash("Only admin accounts can log in here.", 'error')
             return redirect(url_for('customer_login'))
 
-        # Check the password (replace "admin123" with your actual password logic)
         if password != "admin123":
             flash("Incorrect password. Please try again.", 'error')
             return redirect(url_for('admin_login'))
@@ -90,10 +86,9 @@ def admin_login():
                     if bcrypt.check_password_hash(hashed_password, password) and role == 'admin':
                         session['email'] = email
                         session['role'] = role
-                        # Update last login timestamp
                         cur.execute("UPDATE users SET last_login = ? WHERE email = ?", (datetime.datetime.now(), email))
                         con.commit()
-                        return redirect(url_for('admin_panel'))  # Redirect to admin panel
+                        return redirect(url_for('admin_panel'))
                     else:
                         error = "Invalid email or password"
                 else:
@@ -105,7 +100,7 @@ def admin_login():
 
 @app.route('/admin-panel')
 def admin_panel():
-    return render_template('admin-panel.html', title="Admin Panel")  # Render the admin panel template
+    return render_template('admin-panel.html', title="Admin Panel")
 
 @app.route('/admin-register', methods=['GET', 'POST'])
 def admin_register():
@@ -121,14 +116,11 @@ def admin_register():
             try:
                 with sqlite3.connect("dojo.db") as con:
                     cur = con.cursor()
-                    # Check if the email already exists
                     cur.execute("SELECT email FROM users WHERE email = ?", (email,))
                     if cur.fetchone():
                         error = "Email already registered."
                     else:
-                        # Hash the password
                         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-                        # Insert the new admin user
                         cur.execute("INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
                                     (email, hashed_password, 'admin'))
                         con.commit()
@@ -139,7 +131,6 @@ def admin_register():
 
     return render_template('admin-register.html', title='Admin Registration', error=error)
 
-# New customer registration route
 @app.route('/customer-register', methods=['GET', 'POST'])
 def customer_register():
     error = None
@@ -159,14 +150,11 @@ def customer_register():
             try:
                 with sqlite3.connect("dojo.db") as con:
                     cur = con.cursor()
-                    # Check if the email already exists
                     cur.execute("SELECT email FROM users WHERE email = ?", (email,))
                     if cur.fetchone():
                         error = "Email already registered."
                     else:
-                        # Hash the password
                         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-                        # Insert the new customer user
                         cur.execute("INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
                                     (email, hashed_password, 'customer'))
                         con.commit()

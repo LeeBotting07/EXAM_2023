@@ -5,11 +5,6 @@ html, body {
     height: 100%;
 }
 
-/* Hide Main Content */
-.hide-main {
-    display: none; /* Hides the main content */
-}
-
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
