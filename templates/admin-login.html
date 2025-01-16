@@ -2,49 +2,33 @@
 {% block title %}Admin Login{% endblock %}
 {% block content %}
 
-<!-- Display flash messages -->
-{% with messages = get_flashed_messages(with_categories=True) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="flash-message {{ category }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-
 <div class="login-container">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <div class="login-box">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="login-logo">
-        <h1>Admin Login</h1>
-        {% if 'success' in session %}
-            <div class="flash-message success">
-                {{ session.pop('success') }}
+        <h2>Admin Login</h2>
+        <form method="POST" action="{{ url_for('admin_login') }}">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
             </div>
-        {% endif %}
-        <form action="{{ url_for('admin_login') }}" method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+            </div>
             <button type="submit" class="button">Login</button>
         </form>
-        <p>Don't have an admin account? <a href="{{ url_for('admin_register') }}" id="register-link">Register here</a></p>
+        {% if error %}
+            <div class="flash-message error">{{ error }}</div>
+        {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </div>
 </div>
 
-<!-- JavaScript Password Checker  AND YES AI DID HELP AS I DONT KNOW JS -->
-<script>
-    const secretPassword = "admin123"; // The admin password
-    const registerLink = document.getElementById('register-link');
-
-    registerLink.addEventListener('click', function(event) {
-        const userPassword = prompt("Enter the admin password to register:");
-        if (userPassword !== secretPassword) {
-            alert("Incorrect password. You cannot register as an admin.");
-            event.preventDefault(); // Prevent the link from navigating
-        }
-    });
-</script>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}

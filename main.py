@@ -71,10 +71,6 @@ def admin_login():
             flash("Only admin accounts can log in here.", 'error')
             return redirect(url_for('customer_login'))
 
-        if password != "admin123":
-            flash("Incorrect password. Please try again.", 'error')
-            return redirect(url_for('admin_login'))
-
         try:
             with sqlite3.connect("weather.db") as con:
                 cur = con.cursor()
@@ -88,7 +84,7 @@ def admin_login():
                         session['role'] = role
                         cur.execute("UPDATE users SET last_login = ? WHERE email = ?", (datetime.datetime.now(), email))
                         con.commit()
-                        return redirect(url_for('admin-panel'))
+                        return redirect(url_for('admin_panel'))
                     else:
                         error = "Invalid email or password"
                 else:
@@ -112,6 +108,10 @@ def admin_register():
 
         if password != confirm_password:
             error = "Passwords do not match."
+        elif '@' not in email or '.' not in email.split('@')[-1]:
+            error = "Invalid email format."
+        elif len(password) < 8:
+            error = "Password must be at least 8 characters long."
         else:
             try:
                 with sqlite3.connect("weather.db") as con:
@@ -146,6 +146,10 @@ def customer_register():
 
         if password != confirm_password:
             error = "Passwords do not match."
+        elif '@' not in email or '.' not in email.split('@')[-1]:
+            error = "Invalid email format."
+        elif len(password) < 8:
+            error = "Password must be at least 8 characters long."
         else:
             try:
                 with sqlite3.connect("weather.db") as con:
