@@ -261,3 +261,142 @@ footer {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
+
+/* Iframe */
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+  }
+  
+  .iframe-container iframe {
+    max-width: 800px; 
+  }
+
+  /* General styling for the container */
+.about-us {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Heading styles */
+.about-us h1, .about-us h2 {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    animation: pulse 1.5s infinite;
+}
+
+/* Paragraph styles */
+.about-us p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.about-us p:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 1);
+}
+
+/* List styles */
+.about-us ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-us ul li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    padding: 10px;
+    background: linear-gradient(90deg, #ffecd2, #fcb69f);
+    border-radius: 8px;
+    color: #333;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-us ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styles */
+.about-us .btn {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #36d1dc, #5b86e5);
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.about-us .btn:hover {
+    background: linear-gradient(90deg, #5b86e5, #36d1dc);
+    transform: scale(1.1);
+}
+
+/* Blockquote styles */
+.about-us blockquote {
+    font-style: italic;
+    color: #555;
+    background: rgba(255, 255, 255, 0.9);
+    border-left: 5px solid #36d1dc;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+    animation: slideIn 1s ease-in-out;
+}
+
+.about-us blockquote footer {
+    text-align: right;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -1,5 +1,15 @@
 {% extends "main.html" %}
-{% block title %}Today's Weather{% endblock %}
+{% block title %}Account Page{% endblock %}
 {% block content %}
-
+<div class="account-page">
+    <h1>Welcome back, {{ user.first_name }}!</h1>
+    <p>Here are your account details:</p>
+    <ul>
+        <li><strong>First Name:</strong> {{ user.first_name }}</li>
+        <li><strong>Last Name:</strong> {{ user.last_name }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+        <li><strong>Username:</strong> {{ user.username }}</li>
+    </ul>
+    <a href="{{ url('edit_account') }}" class="btn btn-primary">Edit Details</a>
+</div>
 {% endblock %}
