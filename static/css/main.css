@@ -381,6 +381,97 @@ footer {
     }
 }
 
+/* Contact Us Page Styles */
+.contact-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #e6f4ea; /* Light green background */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3); /* Green shadow */
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-container h1 {
+    color: #2e7d32; /* Dark green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-container p {
+    color: #4caf50; /* Medium green */
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #2e7d32;
+}
+
+.contact-container input[type="text"],
+.contact-container input[type="email"],
+.contact-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #a5d6a7; /* Light green border */
+    border-radius: 8px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.contact-container input[type="text"]:focus,
+.contact-container input[type="email"]:focus,
+.contact-container textarea:focus {
+    border-color: #388e3c; /* Darker green on focus */
+    outline: none;
+}
+
+.contact-container button {
+    background-color: #388e3c; /* Dark green */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.contact-container button:hover {
+    background-color: #2e7d32; /* Even darker green */
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.flashes li {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.flashes li.error {
+    background-color: #ffcdd2; /* Light red */
+    color: #b71c1c; /* Dark red */
+}
+
+.flashes li.success {
+    background-color: #c8e6c9; /* Light green */
+    color: #2e7d32; /* Dark green */
+}
+
 @keyframes pulse {
     0%, 100% {
         text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);

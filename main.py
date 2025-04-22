@@ -6,6 +6,24 @@ import datetime
 app = Flask(__name__)
 app.secret_key = 'your_unique_secret_key_here'
 
+# Create contact_messages table if not exists
+def init_db():
+    with sqlite3.connect("weather.db") as con:
+        cur = con.cursor()
+        cur.execute('''
+            CREATE TABLE IF NOT EXISTS contact_messages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT NOT NULL,
+                subject TEXT NOT NULL,
+                message TEXT NOT NULL,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        con.commit()
+
+init_db()
+
 # Routes
 @app.route('/')
 @app.route('/home')
@@ -24,8 +42,40 @@ def week():
 def about():
     return render_template('about.html', title="About Us")
 
-@app.route('/contact')
+from flask import flash
+
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
+
+        if not name or not email or not subject or not message:
+            flash('All fields are required.', 'error')
+            return render_template('contact.html', title="Contact Us")
+
+        # Basic email format validation
+        if '@' not in email or '.' not in email.split('@')[-1]:
+            flash('Invalid email address.', 'error')
+            return render_template('contact.html', title="Contact Us")
+
+        try:
+            with sqlite3.connect("weather.db") as con:
+                cur = con.cursor()
+                cur.execute('''
+                    INSERT INTO contact_messages (name, email, subject, message)
+                    VALUES (?, ?, ?, ?)
+                ''', (name, email, subject, message))
+                con.commit()
+        except sqlite3.Error as e:
+            flash(f'Database error: {e}', 'error')
+            return render_template('contact.html', title="Contact Us")
+
+        flash('Thank you for contacting RolsA Technologies! We will get back to you soon.', 'success')
+        return render_template('contact.html', title="Contact Us")
+
     return render_template('contact.html', title="Contact Us")
 
 @app.route('/login', methods=['GET', 'POST'])
